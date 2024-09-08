@@ -243,7 +243,10 @@ document.querySelector("#signin-form").addEventListener("submit", (e) => {
 		if(result.message){
 			window.location.href="/home"
 		}
-		
+		else{
+			e.target.reset()
+			alert("Please Enter Correct details !")
+		}
     })
     .catch(err => {
         console.log("login", err);
