@@ -1,40 +1,3 @@
-/**
-* Eduport- LMS, Education and Course Theme
-*
-* @author Webestica (https://www.webestica.com/)
-* @version 1.0.0
-**/
-
-
-/* ===================
-Table Of Content
-======================
-01 PRELOADER
-02 MEGA MENU
-03 STICKY HEADER
-04 TINY SLIDER
-05 STICKY BAR
-06 TOOLTIP
-07 POPOVER
-08 BACK TO TOP
-10 GLIGHTBOX
-11 ISOTOPE
-12 CHOICES
-13 AOS ANIMATION
-14 DASHBOARD CHART
-15 EARNING CHART
-16 EARNING CHART 2
-17 TRAFFIC CHART
-18 ACTIVE STUDENT CHART
-19 ACTIVE STUDENT CHART 2
-20 REVIEW CHART
-21 QUILL EDITOR
-22 STEPPER
-23 VIDEO PLAYER
-24 DARK MODE
-25 PRICING
-26 STICKY ELEMENT
-====================== */
 
 "use strict";
 !function () {
@@ -991,9 +954,9 @@ var e = {
         var changeThemeToDark = () => {
           document.documentElement.setAttribute("data-theme", "dark") // set theme to dark
           if(dir == 'rtl') {
-              style.setAttribute('href', 'assets/css/style-dark-rtl.css');
+              style.setAttribute('href', 'static/css/style-dark-rtl.css');
           } else {
-              style.setAttribute('href', 'assets/css/style-dark.css');
+              style.setAttribute('href', 'static/css/style-dark.css');
           }
           localStorage.setItem("data-theme", "dark") // save theme to local storage
         }
@@ -1001,9 +964,9 @@ var e = {
         var changeThemeToLight = () => {
           document.documentElement.setAttribute("data-theme", "light") // set theme light
           if(dir == 'rtl') {
-              style.setAttribute('href', 'assets/css/style-rtl.css');
+              style.setAttribute('href', 'static/css/style-rtl.css');
           } else {
-              style.setAttribute('href', 'assets/css/style.css');
+              style.setAttribute('href', 'static/css/style.css');
           }
           
           localStorage.setItem("data-theme", 'light') // save theme to local storage

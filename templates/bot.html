@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Web UI</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Interact with Ollama Model</h1>
+    <form id="chat-form">
+        <input type="text" id="prompt" placeholder="Enter your prompt" required>
+        <button type="submit">Send</button>
+    </form>
+    <div id="response"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').on('submit', function(event) {
+                event.preventDefault();
+                const prompt = $('#prompt').val();
+
+                $.ajax({
+                    url: '/bot/ollama-chat',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ prompt: prompt }),
+                    success: function(data) {
+                        $('#response').html('<p>' + data.response + '</p>');
+                    },
+                    error: function(err) {
+                        $('#response').html('<p>Error: ' + err.responseJSON.error + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
