@@ -17,7 +17,7 @@ app.register_blueprint(bot_routes,url_prefix="/bot")
 def authentication():
     if 'logged_in' in session and session['logged_in']:
         return redirect(url_for('home'))
-    return render("user.html")
+    return render("user.html",title=title)
 
 @app.route("/home")
 def home():
@@ -30,7 +30,14 @@ def home():
 @app.route("/learningbot")
 def bot():
     if 'logged_in' in session and session['logged_in']:
-        return render("bot.html")
+        return render("bot.html",title=title)
+    else:
+        return redirect(url_for('authentication'))
+
+@app.route("/personalinfo")
+def info():
+    if 'logged_in' in session and session['logged_in']:
+        return render("personalinfo.html",title=title)
     else:
         return redirect(url_for('authentication'))
 

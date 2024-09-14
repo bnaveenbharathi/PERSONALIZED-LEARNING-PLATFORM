@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Eduport- LMS, Education and Course Theme">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="static/images/favicon.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css"
+		href="{{ url_for('static', filename='vendor/font-awesome/css/all.min.css') }}">
+	<link rel="stylesheet" type="text/css"
+		href="{{ url_for('static', filename='vendor/font-awesome/css/all.min.css') }}">
+	<link rel="stylesheet" type="text/css"
+		href="{{ url_for('static', filename='vendor/tiny-slider/tiny-slider.css') }}">
+	<link rel="stylesheet" type="text/css"
+		href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.css') }}">
+
+
+	<!-- Theme CSS -->
+	<link id="style-switch" rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
+
+</head>
+
+<body>
+{% include 'navbar.html' %}
+<div class="start">
+{% block content %}
+
+
+{% endblock %}
+</div>
+
+<footer class="p-3" style="border-top: 1px solid black;">
+    <div class="py-3">
+        <div class="container px-0">
+            <div class="d-flex justify-content-center  py-3 ">
+                <div class="text-primary-hover"> Copyrights <a href="#" class="text-body">©2021 Eduport</a>. All
+                    rights reserved. </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>
+
+<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+<!-- Bootstrap JS -->
+<script src="{{url_for('static',filename='vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Vendors -->
+<script src="{{url_for('static',filename='vendor/tiny-slider/tiny-slider.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/glightbox/js/glightbox.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/purecounterjs/dist/purecounter_vanilla.js')}}"></script>
+
+
+
+<!-- Template Functions -->
+<script src="{{url_for('static',filename='js/functions.js')}}"></script>
+
+</body>
+
+</html>

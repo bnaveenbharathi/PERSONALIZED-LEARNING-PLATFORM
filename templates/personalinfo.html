@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }  .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .button-option {
+        padding: 10px 20px;
+        border: 2px solid #4CAF50;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .button-option.selected {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .button-option:hover {
+        background-color: #d2b48c;
+    }
+    </style>
+</head>
+<body>
+
+    <form id="profileForm" action="/submit-profile" method="POST" enctype="multipart/form-data">
+        
+        <!-- section 1 start -->
+        <!-- Profile Info Section -->
+        <div id="section1" class="form-section active">
+            <div class="section-title">Profile Information</div>
+            <div class="form-group">
+                <label for="profile_picture">Profile Picture:</label>
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="personal_info">Personal Info / Bio:</label>
+                <textarea id="personal_info" name="personal_info" rows="4" placeholder="Tell us about yourself..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter your location" required>
+            </div>
+
+            <div class="section-title">Passion and Daily Study</div>
+            <div class="form-group">
+                <label for="passion">Your Passion:</label>
+                <input type="text" id="passion" name="passion" placeholder="What's your passion?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="study_hours">Daily Study Hours:</label>
+                <input type="number" id="study_hours" name="study_hours" placeholder="How many hours do you study daily?" required>
+            </div>
+            <button type="button" onclick="nextSection(2)">Next</button>
+        </div>
+        <!-- section 1 end -->
+<!-- section 2 -->
+        <!-- Interests Section --> 
+        <div id="section2" class="form-section">
+            <div class="section-title">Interests</div>
+            <div class="form-group">
+                <label>Programming and Digital Literacy:</label>
+                <ul>
+                    <li>Basic: Understanding basic programming concepts</li>
+                    <li>Intermediate: Learning a programming language (Python, JavaScript)</li>
+                    <li>Advanced: Developing complex applications, working with APIs</li>
+                    <li>Hard: Advanced concepts like concurrency, software architecture</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="interests">Programming Languages / Technologies:</label>
+                <select id="interests" name="interests[]" multiple>
+                    <option value="python">Python</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="html_css">HTML/CSS</option>
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="nodejs">Node.js</option>
+                    <option value="go">Go</option>
+                    <option value="blockchain">Blockchain</option>
+                    <option value="machine_learning">Machine Learning</option>
+                </select>
+            </div>
+            <div class="section-title">Skills</div>
+            <div class="form-group">
+                <label for="skills">Technical Skills:</label>
+                <select id="skills" name="skills[]" multiple>
+                    <option value="web_development">Web Development</option>
+                    <option value="app_development">App Development</option>
+                    <option value="blockchain">Blockchain</option>
+                    <option value="ai_ml">AI/ML</option>
+                    <option value="cloud_computing">Cloud Computing</option>
+                    <option value="cyber_security">Cyber Security</option>
+                    <option value="data_science">Data Science</option>
+                </select>
+        </div>
+        <div class="section-title">Learning Preferences</div>
+<div class="form-group">
+    <label>Preferred Learning Domains:</label>
+    <div class="button-group" id="learning_preferences">
+        <div class="button-option" data-value="app_development">App Development</div>
+        <div class="button-option" data-value="web_development">Web Development</div>
+        <div class="button-option" data-value="blockchain">Blockchain</div>
+        <div class="button-option" data-value="ai_ml">AI/ML</div>
+        <div class="button-option" data-value="iot">IoT</div>
+        <div class="button-option" data-value="cyber_security">Cyber Security</div>
+        <div class="button-option" data-value="game_development">Game Development</div>
+        <div class="button-option" data-value="digital_creation">Digital Creation</div>
+    </div>
+</div>
+
+<!-- Programming Languages Section -->
+<div class="section-title">Programming Languages</div>
+<div class="form-group">
+    <label>Programming Languages / Technologies:</label>
+    <div class="button-group" id="programming_languages">
+        <div class="button-option" data-value="python">Python</div>
+        <div class="button-option" data-value="javascript">JavaScript</div>
+        <div class="button-option" data-value="html_css">HTML/CSS</div>
+        <div class="button-option" data-value="java">Java</div>
+        <div class="button-option" data-value="csharp">C#</div>
+        <div class="button-option" data-value="nodejs">Node.js</div>
+        <div class="button-option" data-value="go">Go</div>
+        <div class="button-option" data-value="blockchain">Blockchain</div>
+        <div class="button-option" data-value="machine_learning">Machine Learning</div>
+    </div>
+</div>
+            <button type="button" onclick="nextSection(1)">Back</button>
+            <button type="submit">Submit</button>
+        </div>
+        <!-- section 2 end  -->
+    </form>
+
+    <script>
+        function nextSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById('section' + section).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

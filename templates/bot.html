@@ -1,39 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ollama Web UI</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="description" content="megabot">
+    <meta name="keywords" content="megabot">
+    <meta name="author" content="megabot">
+   
+
+    <!--Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  
+    <!-- iconsax css -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bot/css/vendors/iconsax.css')}}" />
+
+
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bot/css/style.css')}}">
+
 </head>
+
 <body>
-    <h1>Interact with Ollama Model</h1>
-    <form id="chat-form">
-        <input type="text" id="prompt" placeholder="Enter your prompt" required>
-        <button type="submit">Send</button>
-    </form>
-    <div id="response"></div>
+    <section class="chatting-wrapper pt-0">
+        <nav class="navbar navbar-expand-md p-0">
+            <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainnavbarNav" aria-controls="mainnavbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="iconsax" data-icon="text-align-justify"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="mainnavbarNav">
+                <div class="menu-panel">
+                    <button data-bs-toggle="collapse" data-bs-target="#mainnavbarNav"
+                        class="mainnav-close d-block d-md-none"><i class="iconsax" data-icon="close-circle"></i>
+                    </button>
+                    <a href="" class="logo-icon d-none d-md-flex">
+                        <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/logo-icon.svg" class="img-fluid">
+                    </a>
+                    <ul class="nav nav-tabs menu-wrapper" id="myTab" role="tablist">
+                        <li >
+                            <button class="nav-link active" "><i class="iconsax"
+                                    data-icon="messages-2"></i>
+                                <span>Chat</span> </button>
+                        </li>
+                        <li >
+                            <button class="nav-link"><i class="iconsax"
+                                    data-icon="refresh-circle"></i>
+                                <span>History</span> </button>
+                        </li>
+                        <li >
+                            <button class="nav-link" ><i class="iconsax" data-icon="crown-2"></i> <span>Subscription</span></button>
+                        </li>
+                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Help" class="nav-item"
+                            role="presentation">
+                            <button class="nav-link" ><i class="iconsax" data-icon="question-message
+                                "></i> <span>Help</span> </button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary nav-link" "><i class="iconsax" data-icon="star"></i> <span>
+                                    Rating
+                                </span>
+                            </button>
+                        </li>
+                        <li >
+                            <button class="nav-link" type="button"
+                               ><i class="iconsax"
+                                    data-icon="setting-1"></i><span>Setting</span></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat" tabindex="0">
+                <div class="main-wrapper">
+                    <nav class="navbar navbar-expand-lg bg-light p-0">
+                        <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="iconsax" data-icon="text-align-justify"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <div class="inner-menu-panel">
+                                <button data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                                    class="inner-close d-block d-lg-none">Back
+                                </button>
+                                <div class="search-box">
+                                    <i class="iconsax" data-icon="search-normal-2"></i>
+                                    <input type="text" class="form-control" placeholder="Search here..">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="chat-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="navbar-toggler d-md-none d-block" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#mainnavbarNav" aria-controls="mainnavbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <i class="iconsax" data-icon="text-align-justify"></i>
+                            </button>
+                            <a href="" class="logo-icon d-flex d-md-none">
+                                <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/logo-icon.svg" class="img-fluid">
+                            </a>
+                            <h3 id="targetDiv">Ask anything</h3>
+                        </div>
+                        <div class="header-option">
+                            <a class="del-btn" data-cursor="pointer" href="#"><i class="iconsax"
+                                    data-icon="trash"></i></a>
+                           
+                        </div>
+                    </div>
+                    <div class="main-chat">
+                        <div class="no-chat">
+                            <div>
+                                <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/no-chat.svg" class="img-fluid" alt="">
+                                <h3>Ask anything to chatbot</h3>
+                            </div>
+                        </div>
+                        <div class="msger-chat">
+                        </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#chat-form').on('submit', function(event) {
-                event.preventDefault();
-                const prompt = $('#prompt').val();
+                        <form class="msger-inputarea">
+                            <button class="navbar-toggler d-lg-none d-block msger-send-btn" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="iconsax" data-icon="text-align-justify"></i>
+                            </button>
+                            <input type="text" class="msger-input" placeholder="Ask any question here..." />
+                            <a href="#" class="scan-icon"><i class="iconsax" data-icon="scan-1"></i></a>
+                            <a href="#" class="mic-icon"><i class="iconsax" data-icon="mic-1"></i></a>
+                            <button type="submit" class="msger-send-btn"><i class="iconsax"
+                                    data-icon="send-1"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         
+         
 
-                $.ajax({
-                    url: '/bot/ollama-chat',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ prompt: prompt }),
-                    success: function(data) {
-                        $('#response').html('<p>' + data.response + '</p>');
-                    },
-                    error: function(err) {
-                        $('#response').html('<p>Error: ' + err.responseJSON.error + '</p>');
-                    }
-                });
-            });
-        });
-    </script>
-</body>
+    <!-- Bootstrap js-->
+    <script src="{{url_for('static',filename='bot/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- iconsax js -->
+    <script src="{{url_for('static',filename='bot/js/iconsax.js')}}"></script>
+
+
+
+
+<script>
+
+
+
+
+
+</script></body>
+
+
 </html>
