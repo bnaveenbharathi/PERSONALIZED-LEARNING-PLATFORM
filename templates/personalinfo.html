@@ -4,201 +4,566 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile Form</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 20px;
-        }
+     body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 20px;
+}
 
-        .form-section {
-            display: none;
-        }
+.form-section {
+    display: none;
+}
 
-        .form-section.active {
-            display: block;
-        }
+.form-section.active {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+.form-group {
+    margin-bottom: 20px;
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-        input, textarea, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        button:hover {
-            background-color: #45a049;
-        }
+button:hover {
+    background-color: #45a049;
+}
 
-        .section-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }  .button-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .button-option {
-        padding: 10px 20px;
-        border: 2px solid #4CAF50;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #f5f5f5;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .button-option.selected {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .button-option:hover {
-        background-color: #d2b48c;
-    }
+button:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button-option {
+    padding: 10px 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+}
+
+.button-option.selected {
+    background-color: #2C6E49; /* Selected button color */
+    color: white;
+}
+
+.button-option:hover {
+    background-color: #d2b48c;
+}
+
+.button-option:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+.skill-category {
+    margin-bottom: 20px;
+}
+
+.skill-select {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.range-input {
+    display: block;
+    margin: 10px 0;
+}
+
+.range-label {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+#interest_categories {
+    width: 100%;
+    height: 150px; /* Adjust height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for the selected options */
+#interest_categories option:checked {
+    background-color: #4CAF50; /* Green color for selected options */
+    color: #fff; /* White text color for selected options */
+}
+
     </style>
 </head>
 <body>
 
-    <form id="profileForm" action="/submit-profile" method="POST" enctype="multipart/form-data">
-        
+    <form id="profileForm" action="/userinfo" method="POST" enctype="multipart/form-data">
         <!-- section 1 start -->
-        <!-- Profile Info Section -->
+        <h2 class="d-flex justify-content-center mb-4 mt-4">Profile Setup</h2>
+
         <div id="section1" class="form-section active">
-            <div class="section-title">Profile Information</div>
+            <div class="section-title">Personal Information</div>
+
+            <!-- User Type -->
             <div class="form-group">
+                <label for="user_type">I am a:</label>
+                <select id="user_type" name="user_type" onchange="toggleFields()" required>
+                    <option value="" disabled selected>Select...</option>
+                    <option value="student">Student</option>
+                    <option value="professional">Professional</option>
+                </select>
+            </div>
+
+           <!-- Common Fields --> 
+          <div class="form-group">
                 <label for="profile_picture">Profile Picture:</label>
                 <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-            </div>
+            </div> 
 
             <div class="form-group">
                 <label for="personal_info">Personal Info / Bio:</label>
                 <textarea id="personal_info" name="personal_info" rows="4" placeholder="Tell us about yourself..." required></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" placeholder="Enter your location" required>
+            
+
+            <div id="student_fields" style="display: none;">
+               
+                <div class="form-group">
+                    <label for="Field_of_Study">Field of Study:</label>
+                    <select id="Field_of_Study" name="Field_of_Study" onchange="toggleOtherField(this.value)">
+                        <option value="" disabled selected>Select your course...</option>
+2                                   <option value="Computer_Science" >Computer Science</option>
+<option value="Mechanical_Engineering" >Mechanical Engineering</option>
+<option value="Electrical_Engineering" >Electrical Engineering</option>
+<option value="Arts_Humanities" >Arts Humanities</option>
+<option value="Business_Management" >Business Management</option>
+                        <option value="other_study">Other</option> 
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" id="other_field_div" style="display: none;">
+                <label for="study_other">Please specify your field of study:</label>
+                <input type="text" id="study_other" name="study_other" placeholder="Enter your field of study">
             </div>
 
-            <div class="section-title">Passion and Daily Study</div>
-            <div class="form-group">
-                <label for="passion">Your Passion:</label>
-                <input type="text" id="passion" name="passion" placeholder="What's your passion?" required>
+           
+            <div id="professional_fields" style="display: none;">
+                <div class="form-group">
+                    <label for="current_job">Current Job Title:</label>
+                    <select id="current_job" name="current_job" onchange="toggleOtherField(this.value)">
+                        <option value="">Select your job title...</option>
+                        <option value="Software_Engineer">Software Engineer</option>
+                        <option value="Data_Analyst">Data Analyst</option>
+                        <option value="Project_Manager">Project Manager</option>
+                        <option value="Graphic_Designer">Graphic Designer</option>
+                        <option value="Marketing_Specialist">Marketing Specialist</option>
+                        <option value="Sales_Representative">Sales Representative</option>
+                        <option value="Human_Resources_Manager">Human Resources Manager</option>
+                        <option value="other_job">Other</option> 
+                    </select>
+                    
+                    <label for="experience">Please specify your field of Experience:</label>
+                    <input type="number" id="experience" name="experience" placeholder="Enter your field of Experience">
+           
+                </div>
+                
             </div>
+            <div class="form-group" id="other_job_div" style="display: none;">
+                <label for="job_other">Please specify your field of Jobs:</label>
+                <input type="text" id="job_other" name="job_other" placeholder="Enter your field of jobs">
+            </div>
+          
 
-            <div class="form-group">
-                <label for="study_hours">Daily Study Hours:</label>
-                <input type="number" id="study_hours" name="study_hours" placeholder="How many hours do you study daily?" required>
-            </div>
-            <button type="button" onclick="nextSection(2)">Next</button>
+            <button type="button" onclick="showSection('section2')">Next</button>
         </div>
-        <!-- section 1 end -->
-<!-- section 2 -->
-        <!-- Interests Section --> 
+
+        <!-- section 2 start -->
         <div id="section2" class="form-section">
-            <div class="section-title">Interests</div>
+            <div class="section-title">Skills and Interests</div>
             <div class="form-group">
-                <label>Programming and Digital Literacy:</label>
-                <ul>
-                    <li>Basic: Understanding basic programming concepts</li>
-                    <li>Intermediate: Learning a programming language (Python, JavaScript)</li>
-                    <li>Advanced: Developing complex applications, working with APIs</li>
-                    <li>Hard: Advanced concepts like concurrency, software architecture</li>
-                </ul>
-            </div>
-
-            <div class="form-group">
-                <label for="interests">Programming Languages / Technologies:</label>
-                <select id="interests" name="interests[]" multiple>
-                    <option value="python">Python</option>
-                    <option value="javascript">JavaScript</option>
-                    <option value="html_css">HTML/CSS</option>
-                    <option value="java">Java</option>
-                    <option value="csharp">C#</option>
-                    <option value="nodejs">Node.js</option>
-                    <option value="go">Go</option>
-                    <option value="blockchain">Blockchain</option>
-                    <option value="machine_learning">Machine Learning</option>
-                </select>
-            </div>
-            <div class="section-title">Skills</div>
-            <div class="form-group">
-                <label for="skills">Technical Skills:</label>
-                <select id="skills" name="skills[]" multiple>
-                    <option value="web_development">Web Development</option>
-                    <option value="app_development">App Development</option>
-                    <option value="blockchain">Blockchain</option>
-                    <option value="ai_ml">AI/ML</option>
-                    <option value="cloud_computing">Cloud Computing</option>
-                    <option value="cyber_security">Cyber Security</option>
+                <label for="interest_categories">Select Your Interests:</label>
+                <select id="interest_categories" name="interest_categories" multiple>
+                    <option value="technology_engineering">Technology & Engineering</option>
+                    <option value="ai">AI & Machine Learning</option>
                     <option value="data_science">Data Science</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                    <option value="blockchain">Blockchain</option>
+                    <option value="game_development">Game Development</option>
+                    <option value="mobile_app_development">Mobile App Development</option>
+                    <option value="web_development">Web Development</option>
+                    <option value="cloud_computing">Cloud Computing</option>
+                    <option value="others">Others</option>
                 </select>
-        </div>
-        <div class="section-title">Learning Preferences</div>
-<div class="form-group">
-    <label>Preferred Learning Domains:</label>
-    <div class="button-group" id="learning_preferences">
-        <div class="button-option" data-value="app_development">App Development</div>
-        <div class="button-option" data-value="web_development">Web Development</div>
-        <div class="button-option" data-value="blockchain">Blockchain</div>
-        <div class="button-option" data-value="ai_ml">AI/ML</div>
-        <div class="button-option" data-value="iot">IoT</div>
-        <div class="button-option" data-value="cyber_security">Cyber Security</div>
-        <div class="button-option" data-value="game_development">Game Development</div>
-        <div class="button-option" data-value="digital_creation">Digital Creation</div>
-    </div>
-</div>
+            </div>
 
-<!-- Programming Languages Section -->
-<div class="section-title">Programming Languages</div>
-<div class="form-group">
-    <label>Programming Languages / Technologies:</label>
-    <div class="button-group" id="programming_languages">
-        <div class="button-option" data-value="python">Python</div>
-        <div class="button-option" data-value="javascript">JavaScript</div>
-        <div class="button-option" data-value="html_css">HTML/CSS</div>
-        <div class="button-option" data-value="java">Java</div>
-        <div class="button-option" data-value="csharp">C#</div>
-        <div class="button-option" data-value="nodejs">Node.js</div>
-        <div class="button-option" data-value="go">Go</div>
-        <div class="button-option" data-value="blockchain">Blockchain</div>
-        <div class="button-option" data-value="machine_learning">Machine Learning</div>
-    </div>
-</div>
-            <button type="button" onclick="nextSection(1)">Back</button>
-            <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="skill_areas">Skill Areas:</label>
+                <div id="skill_areas" class="button-group">
+                    Select Your interst category
+             </div>
+            </div>
+
+
+            <button type="submit">Submit</button>        
         </div>
-        <!-- section 2 end  -->
+
+        <!-- section 3 start -->
+       
+        </div>
     </form>
 
     <script>
-        function nextSection(section) {
-            // Hide all sections
-            document.querySelectorAll('.form-section').forEach(function(section) {
-                section.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', () => {
+    const interestCategories = document.getElementById('interest_categories');
+    const skillAreasContainer = document.getElementById('skill_areas');
+    const maxCategories = 2;
+    const maxSkillAreas = 8;
+    const maxSubSkills = 5;
+
+    let selectedCategories = [];
+    let selectedSkillAreas = [];
+
+    document.querySelector("#profileForm").addEventListener("submit", (e) => {
+    e.preventDefault(); 
+    const formdata = new FormData(e.target);
+
+  
+    const skillDetails = getSkillDetails();
+    formdata.append('skills', JSON.stringify(skillDetails));
+
+  
+    fetch('/info/userinfo', {
+        method: "POST",
+        body: formdata,  
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.message) {
+            window.location.href = "/personalinfo";
+        } else {
+            alert(result.error || "Please Enter Correct details!");
+        }
+    })
+    .catch(err => {
+        console.log("Error:", err);
+        alert("An error occurred while processing your request.");
+    });
+});
+
+
+    const skillAreasByDomain = {
+    "technology_engineering": [
+        { value: "programming_languages", text: "Programming Languages", skills: ["Python", "JavaScript", "Java", "C++", "C#", "Ruby", "Dart"] },
+        { value: "cloud_platforms", text: "Cloud Platforms", skills: ["AWS", "Azure", "Google Cloud"] },
+        { value: "frontend_frameworks", text: "Frontend Frameworks", skills: ["React", "Angular", "Vue.js"] },
+        { value: "backend_frameworks", text: "Backend Frameworks", skills: ["Node.js", "Django", "Flask"] },
+        { value: "databases", text: "Databases", skills: ["SQL", "NoSQL", "MongoDB", "PostgreSQL", "MySQL"] },
+        { value: "version_control", text: "Version Control", skills: ["Git", "GitHub", "GitLab"] },
+        { value: "devops", text: "DevOps", skills: ["Docker", "Kubernetes", "Jenkins"] },
+        { value: "network_security", text: "Network & Security", skills: ["TCP/IP", "DNS", "DHCP", "VPN", "Firewalls", "IDS/IPS"] }
+    ],
+    "ai": [
+        { value: "machine_learning_algorithms", text: "Machine Learning Algorithms", skills: ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning"] },
+        { value: "libraries_frameworks", text: "Libraries & Frameworks", skills: ["TensorFlow", "Keras", "PyTorch", "Scikit-Learn"] },
+        { value: "data_processing", text: "Data Processing", skills: ["Pandas", "NumPy"] },
+        { value: "deep_learning", text: "Deep Learning", skills: ["Neural Networks", "CNNs", "RNNs"] },
+        { value: "natural_language_processing", text: "Natural Language Processing", skills: ["NLTK", "SpaCy", "BERT"] }
+    ],
+    "data_science": [
+        { value: "data_analysis_tools", text: "Data Analysis Tools", skills: ["Excel", "SQL", "R", "Python (Pandas, NumPy)"] },
+        { value: "data_visualization", text: "Data Visualization", skills: ["Tableau", "Power BI", "Matplotlib", "Seaborn", "Plotly"] },
+        { value: "statistical_analysis", text: "Statistical Analysis", skills: ["Descriptive Statistics", "Inferential Statistics"] },
+        { value: "big_data_tools", text: "Big Data Tools", skills: ["Hadoop", "Spark"] }
+    ],
+    "cybersecurity": [
+        { value: "network_security", text: "Network Security", skills: ["Firewalls", "Intrusion Detection Systems (IDS)", "Intrusion Prevention Systems (IPS)"] },
+        { value: "cryptography", text: "Cryptography", skills: ["Encryption", "Decryption", "Key Management"] },
+        { value: "vulnerability_assessment", text: "Vulnerability Assessment", skills: ["Penetration Testing", "Vulnerability Scanning"] },
+        { value: "compliance_standards", text: "Compliance & Standards", skills: ["GDPR", "HIPAA", "ISO 27001"] },
+        { value: "incident_response", text: "Incident Response", skills: ["Forensics", "Incident Management"] }
+    ],
+    "blockchain": [
+        { value: "blockchain_platforms", text: "Blockchain Platforms", skills: ["Ethereum", "Hyperledger", "Binance Smart Chain"] },
+        { value: "smart_contracts", text: "Smart Contracts", skills: ["Solidity", "Web3.js"] },
+        { value: "cryptocurrencies", text: "Cryptocurrencies", skills: ["Bitcoin", "Ethereum", "Altcoins"] },
+        { value: "consensus_algorithms", text: "Consensus Algorithms", skills: ["Proof of Work", "Proof of Stake"] },
+        { value: "decentralized_applications", text: "Decentralized Applications (dApps)", skills: ["Development", "Deployment"] }
+    ],
+    "game_development": [
+        { value: "game_engines", text: "Game Engines", skills: ["Unity", "Unreal Engine"] },
+        { value: "game_design", text: "Game Design", skills: ["Mechanics", "Level Design", "Game Balance"] },
+        { value: "graphics", text: "Graphics", skills: ["2D/3D Art", "Animation", "Shader Programming"] },
+        { value: "programming", text: "Programming", skills: ["C#", "C++", "Python (for scripting)"] },
+        { value: "game_testing", text: "Game Testing", skills: ["Playtesting", "Bug Reporting"] }
+    ],
+    "mobile_app_development": [
+        { value: "platforms", text: "Platforms", skills: ["iOS", "Android"] },
+        { value: "programming_languages", text: "Programming Languages", skills: ["Swift", "Kotlin", "Java", "Dart"] },
+        { value: "frameworks", text: "Frameworks", skills: ["React Native", "Flutter", "Xamarin"] },
+        { value: "ui_ux_design", text: "UI/UX Design", skills: ["Mobile App Design Principles", "Prototyping"] },
+        { value: "apis", text: "APIs", skills: ["RESTful APIs", "GraphQL"] }
+    ],
+    "web_development": [
+        { value: "frontend", text: "Frontend", skills: ["HTML", "CSS", "JavaScript", "Frontend Frameworks (React, Angular, Vue.js)"] },
+        { value: "backend", text: "Backend", skills: ["Node.js", "Django", "Flask", "Ruby on Rails"] },
+        { value: "databases", text: "Databases", skills: ["SQL", "NoSQL", "MongoDB"] },
+        { value: "web_design", text: "Web Design", skills: ["Responsive Design", "User Experience (UX)"] },
+        { value: "deployment", text: "Deployment", skills: ["Web Hosting", "CI/CD"] }
+    ],
+    "cloud_computing": [
+        { value: "cloud_providers", text: "Cloud Providers", skills: ["AWS", "Azure", "Google Cloud"] },
+        { value: "services", text: "Services", skills: ["Compute (EC2, Azure VMs)", "Storage (S3, Blob Storage)"] },
+        { value: "serverless", text: "Serverless", skills: ["AWS Lambda", "Azure Functions"] },
+        { value: "containerization", text: "Containerization", skills: ["Docker", "Kubernetes"] },
+        { value: "cloud_security", text: "Cloud Security", skills: ["IAM", "Encryption"] }
+    ]
+};
+
+interestCategories.addEventListener('change', (event) => {
+        const selectedOptions = Array.from(event.target.selectedOptions);
+        const selectedValues = selectedOptions.map(option => option.value);
+
+        if (selectedValues.length > maxCategories) {
+            alert(`You can select a maximum of ${maxCategories} categories.`);
+            event.target.value = selectedValues.slice(0, maxCategories);
+        }
+
+        selectedCategories = Array.from(event.target.selectedOptions).map(option => option.value);
+        updateSkillAreas();
+    });
+    function getSkillDetails() {
+    const skillDetails = [];
+
+    document.querySelectorAll('.skill-category').forEach(skillDiv => {
+        skillDiv.querySelectorAll('.skill-button').forEach(skillButton => {
+            const skillName = skillButton.getAttribute('data-skill');
+
+            const skillLevelDiv = skillDiv.querySelector(`.skill-level-container[data-skill="${skillName}"]`);
+
+            if (skillLevelDiv) {
+                const rangeInput = skillLevelDiv.querySelector('.range-input');
+                const levelValue = rangeInput.value;
+
+                const rangeLabel = skillLevelDiv.querySelector('.range-label');
+                const levelLabel = rangeLabel.textContent;
+
+                skillDetails.push({
+                    skillName: skillName,
+                    level: levelValue,
+                    levelLabel: levelLabel
+                });
+            }
+        });
+    });
+
+    return skillDetails;
+}
+
+
+    function updateSkillAreas() {
+    skillAreasContainer.innerHTML = '';
+    selectedSkillAreas = [];
+
+    Object.keys(skillAreasByDomain).forEach(category => {
+        const skills = skillAreasByDomain[category] || [];
+        const isCategorySelected = selectedCategories.includes(category);
+
+        skills.forEach(skill => {
+            const skillDiv = document.createElement('div');
+            skillDiv.classList.add('skill-category');
+            skillDiv.style.display = isCategorySelected ? 'block' : 'none';
+            skillDiv.innerHTML = `<strong>${skill.text}</strong>`;
+
+            skill.skills.forEach(skillName => {
+                const skillButton = document.createElement('button');
+                skillButton.classList.add('skill-button');
+                skillButton.setAttribute('data-skill', skillName);
+                skillButton.textContent = skillName;
+                skillButton.setAttribute('type', 'button'); 
+
+                if (selectedSkillAreas.includes(skillName)) {
+                    skillButton.classList.add('selected');
+                }
+
+                skillButton.addEventListener('click', () => {
+                    handleSkillSelection(skillButton, skillName);
+                });
+
+                skillDiv.appendChild(skillButton);
             });
 
-            // Show the selected section
-            document.getElementById('section' + section).classList.add('active');
+            skillAreasContainer.appendChild(skillDiv);
+        });
+    });
+}
+function handleSkillSelection(button, skillName) {
+    if (selectedSkillAreas.includes(skillName)) {
+        selectedSkillAreas = selectedSkillAreas.filter(skill => skill !== skillName);
+        button.classList.remove('selected');
+        removeSkillLevelInput(skillName);
+    } else {
+        if (selectedSkillAreas.length < maxSkillAreas) {
+            selectedSkillAreas.push(skillName);
+            button.classList.add('selected');
+            addSkillLevelInput(skillName);
+        } else {
+            alert(`You can select a maximum of ${maxSkillAreas} skill areas.`);
+            return;
         }
+    }
+}
+function addSkillLevelInput(skillName) {
+    const skillButton = document.querySelector(`.skill-button[data-skill="${skillName}"]`);
+    const skillDiv = skillButton.parentElement;
+
+    if (skillDiv.querySelector(`.skill-level-container[data-skill="${skillName}"]`)) {
+        return;
+    }
+
+    const skillLevelDiv = document.createElement('div');
+    skillLevelDiv.classList.add('skill-level-container');
+    skillLevelDiv.setAttribute('data-skill', skillName);
+
+    const skillNameSpan = document.createElement('span');
+    skillNameSpan.classList.add('skill-name');
+    skillNameSpan.textContent = skillName;
+
+    const rangeInput = document.createElement('input');
+    rangeInput.type = 'range';
+    rangeInput.min = '0';
+    rangeInput.max = '100';
+    rangeInput.value = '50';
+    rangeInput.classList.add('range-input');
+    rangeInput.setAttribute('data-skill', skillName);
+
+    const rangeLabel = document.createElement('span');
+    rangeLabel.classList.add('range-label');
+    rangeLabel.textContent = getLevelFromRange(rangeInput.value);
+
+    rangeInput.addEventListener('input', () => {
+        rangeLabel.textContent = getLevelFromRange(rangeInput.value);
+    });
+
+    skillLevelDiv.appendChild(skillNameSpan);
+    skillLevelDiv.appendChild(rangeInput);
+    skillLevelDiv.appendChild(rangeLabel);
+
+    skillDiv.appendChild(skillLevelDiv);
+}
+
+
+function removeSkillLevelInput(skillName) {
+    const skillButton = document.querySelector(`.skill-button[data-skill="${skillName}"]`);
+    const skillDiv = skillButton.parentElement;
+    const skillLevelDiv = skillDiv.querySelector(`.skill-level-container[data-skill="${skillName}"]`);
+
+    if (skillLevelDiv) {
+        skillDiv.removeChild(skillLevelDiv);
+    }
+}
+function getSkillDetails() {
+    const rangeInputs = document.querySelectorAll('.range-input'); 
+    const skillDetails = []; 
+
+    rangeInputs.forEach(input => {
+        const skillName = input.getAttribute('data-skill'); 
+        const skillValue = input.value; 
+        skillDetails.push({ skill: skillName, value: skillValue });
+    });
+
+    return skillDetails; 
+}
+
+
+    function getLevelFromRange(value) {
+        value = parseInt(value, 10);
+        if (value <= 20) return 'Beginner: Basic understanding, little to no practical experience';
+        if (value <= 40) return 'Beginner-Intermediate: Some practical experience';
+        if (value <= 60) return 'Intermediate: Practical experience and good working knowledge.';
+        if (value <= 75) return 'Advanced-Expert: High level of proficiency with hands-on experience';
+        if (value <= 95) return 'Expert: Extensive experience and mastery.';
+        return 'Advanced';
+    }});
+        function toggleFields() {
+            const userType = document.getElementById('user_type').value;
+            document.getElementById('student_fields').style.display = userType === 'student' ? 'block' : 'none';
+            document.getElementById('professional_fields').style.display = userType === 'professional' ? 'block' : 'none';
+        }
+
+        function toggleOtherField(selectId, otherInputId) {
+            const selectElement = document.getElementById(selectId);
+            const otherInput = document.getElementById(otherInputId);
+            otherInput.style.display = selectElement.value === 'other' ? 'block' : 'none';
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function toggleOtherField(selectedValue) {
+    const otherFieldDiv = document.getElementById('other_field_div');
+    const otherjobDiv = document.getElementById('other_job_div');
+
+    if (selectedValue === 'other_study')  {
+        otherFieldDiv.style.display = 'block';
+
+    } else {
+        otherFieldDiv.style.display = 'none';
+       
+    }
+    if  (selectedValue === 'other_job'){
+        otherjobDiv.style.display = 'block';
+    }
+    else{
+         otherjobDiv.style.display = 'none';
+    }
+}
     </script>
 
 </body>

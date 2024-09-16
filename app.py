@@ -2,15 +2,19 @@ from flask import Flask,render_template as render,redirect,request,session,url_f
 from components.connection import connection
 from components.auth import auth_routes
 from components.bot import bot_routes
+from components.info import info_routes
+import os
 
 app=Flask(__name__)
 app.config["SECRET_KEY"]='123890'
 
 title="LearnSphere"
 
+
 # authentication
 app.register_blueprint(auth_routes,url_prefix="/auth")
 app.register_blueprint(bot_routes,url_prefix="/bot")
+app.register_blueprint(info_routes,url_prefix="/info")
 
 #routes
 @app.route("/")

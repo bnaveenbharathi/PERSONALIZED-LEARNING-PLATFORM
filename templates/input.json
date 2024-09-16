@@ -1,0 +1,157 @@
+{
+    "fields_of_study": {
+      "Computer_Science": {
+        "interests": [
+          { "label": "Technology & Engineering", "value": "technology_engineering" },
+          { "label": "AI & Machine Learning", "value": "ai" },
+          { "label": "Data Science", "value": "data_science" },
+          { "label": "Cybersecurity", "value": "cybersecurity" },
+          { "label": "Blockchain", "value": "blockchain" },
+          { "label": "Game Development", "value": "game_development" },
+          { "label": "Mobile App Development", "value": "mobile_app_development" },
+          { "label": "Web Development", "value": "web_development" },
+          { "label": "Cloud Computing", "value": "cloud_computing" },
+          { "label": "Others", "value": "others" }
+        ],
+        "skills": {
+          "technology_engineering": ["System Design", "Hardware Development", "Networking"],
+          "ai": ["Machine Learning", "Deep Learning", "Natural Language Processing"],
+          "data_science": ["Data Visualization", "Statistical Analysis", "Predictive Analytics"],
+          "cybersecurity": ["Network Security", "Penetration Testing", "Cryptography"],
+          "blockchain": ["Smart Contracts", "Blockchain Architecture", "Cryptocurrencies"],
+          "game_development": ["Game Design", "3D Modeling", "Game Programming"],
+          "mobile_app_development": ["iOS Development", "Android Development", "Cross-Platform Development"],
+          "web_development": ["Frontend Development", "Backend Development", "Web Design"],
+          "cloud_computing": ["Cloud Architecture", "Cloud Security", "Cloud Services Management"],
+          "others": ["General IT Skills"]
+        }
+      },
+      "Mechanical_Engineering": {
+        "interests": [
+          { "label": "Automotive Engineering", "value": "automotive_engineering" },
+          { "label": "Thermal Engineering", "value": "thermal_engineering" },
+          { "label": "Manufacturing Engineering", "value": "manufacturing_engineering" },
+          { "label": "Robotics", "value": "robotics" },
+          { "label": "Structural Mechanics", "value": "structural_mechanics" },
+          { "label": "Others", "value": "others" }
+        ],
+        "skills": {
+          "automotive_engineering": ["Vehicle Dynamics", "Engine Design", "Automotive Electronics"],
+          "thermal_engineering": ["Heat Transfer", "Thermodynamics", "HVAC Systems"],
+          "manufacturing_engineering": ["Production Planning", "Quality Control", "Manufacturing Processes"],
+          "robotics": ["Robotic Systems", "Automation", "Control Systems"],
+          "structural_mechanics": ["Stress Analysis", "Structural Design", "Finite Element Analysis"],
+          "others": ["General Mechanical Engineering Skills"]
+        }
+      },
+      "Electrical_Engineering": {
+        "interests": [
+          { "label": "Power Systems", "value": "power_systems" },
+          { "label": "Control Systems", "value": "control_systems" },
+          { "label": "Electronics", "value": "electronics" },
+          { "label": "Signal Processing", "value": "signal_processing" },
+          { "label": "Telecommunications", "value": "telecommunications" },
+          { "label": "Others", "value": "others" }
+        ],
+        "skills": {
+          "power_systems": ["Electrical Power Distribution", "Power Generation", "Energy Management"],
+          "control_systems": ["Control Theory", "Automation", "PID Controllers"],
+          "electronics": ["Circuit Design", "Embedded Systems", "Analog and Digital Electronics"],
+          "signal_processing": ["Fourier Transform", "Digital Filters", "Signal Analysis"],
+          "telecommunications": ["Network Protocols", "Wireless Communication", "Telecom Systems Design"],
+          "others": ["General Electrical Engineering Skills"]
+        }
+      },
+      "Arts_Humanities": {
+        "interests": [
+          { "label": "History", "value": "history" },
+          { "label": "Literature", "value": "literature" },
+          { "label": "Philosophy", "value": "philosophy" },
+          { "label": "Art History", "value": "art_history" },
+          { "label": "Cultural Studies", "value": "cultural_studies" },
+          { "label": "Others", "value": "others" }
+        ],
+        "skills": {
+          "history": ["Historical Research", "Archival Analysis", "Historical Writing"],
+          "literature": ["Literary Analysis", "Creative Writing", "Critical Theory"],
+          "philosophy": ["Ethics", "Logic", "Metaphysics"],
+          "art_history": ["Art Analysis", "Historical Art Movements", "Museum Curation"],
+          "cultural_studies": ["Cultural Analysis", "Ethnography", "Media Studies"],
+          "others": ["General Arts and Humanities Skills"]
+        }
+      },
+      "Business_Management": {
+        "interests": [
+          { "label": "Marketing", "value": "marketing" },
+          { "label": "Finance", "value": "finance" },
+          { "label": "Human Resource Management", "value": "hr_management" },
+          { "label": "Operations Management", "value": "operations_management" },
+          { "label": "Entrepreneurship", "value": "entrepreneurship" },
+          { "label": "Others", "value": "others" }
+        ],
+        "skills": {
+          "marketing": ["Market Research", "Digital Marketing", "Brand Management"],
+          "finance": ["Financial Analysis", "Investment Strategies", "Risk Management"],
+          "hr_management": ["Recruitment", "Employee Relations", "Performance Management"],
+          "operations_management": ["Process Improvement", "Supply Chain Management", "Project Management"],
+          "entrepreneurship": ["Business Planning", "Startup Management", "Innovation"],
+          "others": ["General Business Management Skills"]
+        }
+      }
+    },
+    "job_titles": {
+      "Software_Engineer": [
+        { "label": "Software Development", "value": "software_development" },
+        { "label": "Systems Design", "value": "systems_design" },
+        { "label": "Application Programming", "value": "application_programming" },
+        { "label": "Web Development", "value": "web_development" },
+        { "label": "Database Management", "value": "database_management" }
+      ],
+      "Data_Analyst": [
+        { "label": "Data Visualization", "value": "data_visualization" },
+        { "label": "Data Cleaning", "value": "data_cleaning" },
+        { "label": "Statistical Analysis", "value": "statistical_analysis" },
+        { "label": "Data Mining", "value": "data_mining" },
+        { "label": "Predictive Modeling", "value": "predictive_modeling" }
+      ],
+      "Project_Manager": [
+        { "label": "Project Planning", "value": "project_planning" },
+        { "label": "Risk Management", "value": "risk_management" },
+        { "label": "Team Leadership", "value": "team_leadership" },
+        { "label": "Budget Management", "value": "budget_management" },
+        { "label": "Stakeholder Communication", "value": "stakeholder_communication" }
+      ],
+      "Graphic_Designer": [
+        { "label": "Visual Design", "value": "visual_design" },
+        { "label": "Illustration", "value": "illustration" },
+        { "label": "Brand Identity", "value": "brand_identity" },
+        { "label": "UX/UI Design", "value": "ux_ui_design" },
+        { "label": "Print Design", "value": "print_design" }
+      ],
+      "Marketing_Specialist": [
+        { "label": "Digital Marketing", "value": "digital_marketing" },
+        { "label": "Content Creation", "value": "content_creation" },
+        { "label": "SEO Optimization", "value": "seo_optimization" },
+        { "label": "Market Research", "value": "market_research" },
+        { "label": "Campaign Management", "value": "campaign_management" }
+      ],
+      "Sales_Representative": [
+        { "label": "Client Acquisition", "value": "client_acquisition" },
+        { "label": "Sales Negotiation", "value": "sales_negotiation" },
+        { "label": "Product Knowledge", "value": "product_knowledge" },
+        { "label": "Customer Relationship Management", "value": "crm" },
+        { "label": "Lead Generation", "value": "lead_generation" }
+      ],
+      "Human_Resources_Manager": [
+        { "label": "Recruitment", "value": "recruitment" },
+        { "label": "Employee Relations", "value": "employee_relations" },
+        { "label": "Performance Management", "value": "performance_management" },
+        { "label": "Training and Development", "value": "training_and_development" },
+        { "label": "Compensation and Benefits", "value": "compensation_and_benefits" }
+      ],
+      "Other": [
+        { "label": "Other Interests", "value": "other_interests" }
+      ]
+    }
+  }
+  

@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="megabot">
     <meta name="keywords" content="megabot">
     <meta name="author" content="megabot">
-   
-
-    <!--Google font-->
+<title>Learning Bot</title>
+    <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-    <!-- bootstrap css -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   
-    <!-- iconsax css -->
+    <!-- Custom Iconsax CSS -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bot/css/vendors/iconsax.css')}}" />
 
-
-    <!-- style css -->
+    <!-- Custom Style CSS -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bot/css/style.css')}}">
-
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .responses{
+            color: white ;
+           box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+           margin: 10px;
+           padding: 10px;
+        }
+        .responses strong{
+            font-size: larger;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,46 +47,25 @@
             </button>
             <div class="collapse navbar-collapse" id="mainnavbarNav">
                 <div class="menu-panel">
-                    <button data-bs-toggle="collapse" data-bs-target="#mainnavbarNav"
-                        class="mainnav-close d-block d-md-none"><i class="iconsax" data-icon="close-circle"></i>
+                    <button data-bs-toggle="collapse" data-bs-target="#mainnavbarNav" class="mainnav-close d-block d-md-none">
+                        <i class="iconsax" data-icon="close-circle"></i>
                     </button>
                     <a href="" class="logo-icon d-none d-md-flex">
                         <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/logo-icon.svg" class="img-fluid">
                     </a>
                     <ul class="nav nav-tabs menu-wrapper" id="myTab" role="tablist">
-                        <li >
-                            <button class="nav-link active" "><i class="iconsax"
-                                    data-icon="messages-2"></i>
-                                <span>Chat</span> </button>
-                        </li>
-                        <li >
-                            <button class="nav-link"><i class="iconsax"
-                                    data-icon="refresh-circle"></i>
-                                <span>History</span> </button>
-                        </li>
-                        <li >
-                            <button class="nav-link" ><i class="iconsax" data-icon="crown-2"></i> <span>Subscription</span></button>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Help" class="nav-item"
-                            role="presentation">
-                            <button class="nav-link" ><i class="iconsax" data-icon="question-message
-                                "></i> <span>Help</span> </button>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-primary nav-link" "><i class="iconsax" data-icon="star"></i> <span>
-                                    Rating
-                                </span>
-                            </button>
-                        </li>
-                        <li >
-                            <button class="nav-link" type="button"
-                               ><i class="iconsax"
-                                    data-icon="setting-1"></i><span>Setting</span></button>
-                        </li>
+                        <li><button class="nav-link active"><i class="iconsax" data-icon="messages-2"></i><span>Chat</span></button></li>
+                        <li><button class="nav-link"><i class="iconsax" data-icon="refresh-circle"></i><span>History</span></button></li>
+                        <li><button class="nav-link"><i class="iconsax" data-icon="crown-2"></i><span>Subscription</span></button></li>
+                        <li><button class="nav-link"><i class="iconsax" data-icon="question-message"></i><span>Help</span></button></li>
+                        <li><button type="button" class="btn btn-primary nav-link"><i class="iconsax" data-icon="star"></i><span>Rating</span></button></li>
+                        <li><button class="nav-link"><i class="iconsax" data-icon="setting-1"></i><span>Setting</span></button></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <!-- Chat Content -->
         <div class="tab-content">
             <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat" tabindex="0">
                 <div class="main-wrapper">
@@ -100,68 +88,64 @@
                             </div>
                         </div>
                     </nav>
+                    
                     <div class="chat-header">
                         <div class="d-flex align-items-center gap-2">
-                            <button class="navbar-toggler d-md-none d-block" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#mainnavbarNav" aria-controls="mainnavbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <i class="iconsax" data-icon="text-align-justify"></i>
-                            </button>
-                            <a href="" class="logo-icon d-flex d-md-none">
-                                <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/logo-icon.svg" class="img-fluid">
-                            </a>
                             <h3 id="targetDiv">Ask anything</h3>
                         </div>
                         <div class="header-option">
-                            <a class="del-btn" data-cursor="pointer" href="#"><i class="iconsax"
-                                    data-icon="trash"></i></a>
-                           
+                            <a class="del-btn" href="#"><i class="iconsax" data-icon="trash"></i></a>
                         </div>
                     </div>
-                    <div class="main-chat">
-                        <div class="no-chat">
-                            <div>
-                                <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/no-chat.svg" class="img-fluid" alt="">
-                                <h3>Ask anything to chatbot</h3>
-                            </div>
-                        </div>
-                        <div class="msger-chat">
-                        </div>
 
-                        <form class="msger-inputarea">
-                            <button class="navbar-toggler d-lg-none d-block msger-send-btn" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="iconsax" data-icon="text-align-justify"></i>
-                            </button>
-                            <input type="text" class="msger-input" placeholder="Ask any question here..." />
-                            <a href="#" class="scan-icon"><i class="iconsax" data-icon="scan-1"></i></a>
-                            <a href="#" class="mic-icon"><i class="iconsax" data-icon="mic-1"></i></a>
-                            <button type="submit" class="msger-send-btn"><i class="iconsax"
-                                    data-icon="send-1"></i></button>
+                    <div class="main-chat">
+                        <div class="msger-chat" id="chat-content"></div>
+
+                        <form class="msger-inputarea" id="chat-form">
+                            <input type="text" class="msger-input" placeholder="Ask any question here..." id="prompt" required>
+                            <button type="submit" class="msger-send-btn"><i class="iconsax" data-icon="send-1"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
-         
-         
+        </div>
 
-    <!-- Bootstrap js-->
+      
+        <script>
+            $(document).ready(function() {
+                $('#chat-form').on('submit', function(event) {
+                    event.preventDefault();
+                    const prompt = $('#prompt').val();
+
+                    if (prompt.trim() === '') {
+                        alert('Please enter a valid question.');
+                        return;
+                    }
+
+                    $('#prompt').val('');  
+                    $('#chat-content').append('<div class="responses"><strong>You:</strong> ' + prompt + '</div>');
+
+                    $.ajax({
+                        url: '/bot/ollama-chat',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ prompt: prompt }),
+                        success: function(data) {
+                            $('#chat-content').append('<div class="responses"><strong>Bot:</strong> ' + data.response + '</div>');
+                        },
+                        error: function(err) {
+                            $('#chat-content').append('<div><strong>Error:</strong> ' + err.responseJSON.error + '</div>');
+                        }
+                    });
+                });
+            });
+        </script>
+    </section>
+
+    <!-- Bootstrap JS -->
     <script src="{{url_for('static',filename='bot/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- iconsax js -->
+    <!-- Iconsax JS -->
     <script src="{{url_for('static',filename='bot/js/iconsax.js')}}"></script>
 
-
-
-
-<script>
-
-
-
-
-
-</script></body>
-
-
+</body>
 </html>
