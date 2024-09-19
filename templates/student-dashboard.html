@@ -27,7 +27,7 @@ Page Banner START -->
 						<!-- Profile info -->
 						<div class="col d-sm-flex justify-content-between align-items-center">
 							<div>
-								<h1 class="my-1 fs-4" id="name"></h1>
+								<h1 class="my-1 fs-4" id="name1"></h1>
 								<ul class="list-inline mb-0">
 									<li class="list-inline-item me-3 mb-1 mb-sm-0">
                     <span class="h6">255</span>
@@ -51,7 +51,7 @@ Page Banner START -->
 					</div>
 				</div>
 
-				<!-- Advanced filter responsive toggler START -->
+
 				<!-- Divider -->
 				<hr class="d-xl-none">
 				<div class="col-12 col-xl-3 d-flex justify-content-between align-items-center">
@@ -89,15 +89,11 @@ Page content START -->
 							<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 								<!-- Dashboard menu -->
 								<div class="list-group list-group-dark list-group-borderless">
-									<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-									<a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
-									<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
-									<a class="list-group-item" href="student-payment-info.html"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment info</a>
-									<a class="list-group-item" href="student-bookmark.html"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a>
-									<a class="list-group-item" href="instructor-edit-profile.html"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-									<a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
-									<a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-									<form action="{{ url_for('auth.logout') }}" method="post">
+									<a class="list-group-item active" href="/student-dashboard"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+									<a class="list-group-item" href=""><i class="bi bi-card-checklist fa-fw me-2"></i>Progress Report</a>
+									<a class="list-group-item" href=""><i class="bi bi-card-checklist fa-fw me-2"></i>Learning path</a>
+									<a class="list-group-item" href=""><i class="bi bi-basket fa-fw me-2"></i>Courses</a>
+											<form action="{{ url_for('auth.logout') }}" method="post">
 										<li><a class="list-group-item text-danger bg-danger-soft-hover" href=""><i class="fas fa-sign-out-alt fa-fw me-2"></i><button type="submit" style="background: none;border: none; color: white;">Sign Out</button></a></li>
 									</form>
 								</div>
@@ -417,7 +413,7 @@ Page content END -->
 
 </main>
 <script>
-<script>
+
 function fetchUserProfile() {
     fetch('/dashboard/student-profile', {
         method: "GET",
@@ -434,10 +430,10 @@ function fetchUserProfile() {
     .then(data => {
         if(data){
 			console.log(data);
-			let name=document.querySelector("#name")
+			let name1=document.querySelector("#name1")
 			let userprofile=document.querySelector("#userprofile")
 			let userprofile3=document.querySelector("#userprofile3")
-            name.textContent=data.user.name
+            name1.textContent=data.user.name
 			userprofile3.src=data.img_url
 			
 		}
