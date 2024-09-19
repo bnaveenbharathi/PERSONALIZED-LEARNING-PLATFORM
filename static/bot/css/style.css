@@ -503,9 +503,7 @@ li {
   font-size: 0.85em;
 }
 
-.msger-chat {
-  padding: 0 30px 120px;
-}
+
 
 .left-msg .msg-bubble {
   border-bottom-left-radius: 0;
@@ -552,7 +550,7 @@ li {
   display: flex;
   position: fixed;
   bottom: 30px;
-  left: 430px;
+  left: 250px;
   width: calc(100% - 60px - 400px);
   gap: 10px;
   z-index: 1;
@@ -3925,19 +3923,8 @@ header .offcanvas-backdrop {
   stroke: rgba(var(--theme-color), 1);
 }
 
-.main-wrapper {
-  margin-left: 100px;
-  min-height: 100vh;
-  position: relative;
-  padding-left: 300px;
-  background: #141d2b;
-}
-[dir=rtl] .main-wrapper {
-  padding-left: 0;
-  padding-right: 300px;
-  margin-left: 0;
-  margin-right: 100px;
-}
+
+
 @media (max-width: 991px) {
   .main-wrapper {
     padding-left: 0;
@@ -4033,7 +4020,7 @@ header .offcanvas-backdrop {
           justify-content: space-between;
   width: 100%;
   position: fixed;
-  left: 430px;
+  left: 240px;
   border-bottom: 1px solid rgba(var(--title-color), 0.15);
   width: calc(100% - 460px);
   padding: 24px 0;

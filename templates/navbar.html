@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container-fluid px-3 px-xl-5">
             <!-- Logo START -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/home">
                 <h2>{{title}}</h2>
             </a>
             <!-- Logo END -->
@@ -70,10 +70,7 @@
                     </li>
 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="accounntMenu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Blogs</a>
-                    </li>
+                    
 
                     <li class="nav-item dropdown ">
                         <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -112,8 +109,7 @@
                 <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button"
                     data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <img class="avatar-img rounded-circle"
-                        src="{{url_for('static',filename='images/avatar/01.jpg')}}" alt="avatar">
+                    <img class="avatar-img rounded-circle" src=" " alt="avatar" id="userprofile2" >
                 </a>
                 <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
                     aria-labelledby="profileDropdown">
@@ -122,18 +118,17 @@
                         <div class="d-flex align-items-center">
                             <!-- Avatar -->
                             <div class="avatar me-3">
-                                <img class="avatar-img rounded-circle shadow"
-                                    src="{{url_for('static',filename='images/avatar/01.jpg')}}" alt="avatar">
+                                <img class="avatar-img rounded-circle shadow" src=" " alt="avatar" id="userprofile">
                             </div>
                             <div>
-                                <a class="h6" href="#">Lori Ferguson</a>
-                                <p class="small m-0">example@gmail.com</p>
+                                <a class="h6" href="#" id="name"></a>
+                                <p class="small m-0" id="emailid"></p>
                             </div>
                         </div>
                         <hr>
                     </li>
                     <!-- Links -->
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Dashboard</a></li>
+                    <li><a class="dropdown-item" href="/student-dashboard"><i class="bi bi-person fa-fw me-2"></i>Dashboard</a></li>
                     <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a>
                     </li>
                     <form action="{{ url_for('auth.logout') }}" method="post">
@@ -148,6 +143,47 @@
     </nav>
     <!-- Logo Nav END -->
 </header>
+<script>
+    
+function fetchUserProfile() {
+    fetch('/dashboard/student-profile', {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error! Status: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data){
+			console.log(data);
+			let email=document.querySelector("#emailid")
+            let name=document.querySelector("#name")
+			let userprofile=document.querySelector("#userprofile")
+			let userprofile2=document.querySelector("#userprofile2")
+            email.textContent=data.user.email
+			userprofile.src=data.img_url
+			userprofile2.src=data.img_url
+            name.textContent=data.user.name
+			
+		}
+       else{
+		console.log('fetch error');
+		alert('DB not connected');
+	   }
+    })
+    .catch(err => {
+        console.error("Fetch error: ", err);
+    });
+}
+
+fetchUserProfile();
+
+</script>
 <!-- Header END -->
 
 <!--

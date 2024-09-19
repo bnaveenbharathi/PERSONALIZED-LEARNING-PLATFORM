@@ -24,12 +24,16 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bot/css/style.css')}}">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/181ea7bd20.js" crossorigin="anonymous"></script>
     <style>
         .responses{
             color: white ;
            box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
            margin: 10px;
            padding: 10px;
+           width: 100%;
+           max-width: 1090px;
+           margin: 0 auto;
         }
         .responses strong{
             font-size: larger;
@@ -38,78 +42,28 @@
 </head>
 
 <body>
-    <section class="chatting-wrapper pt-0">
-        <nav class="navbar navbar-expand-md p-0">
-            <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainnavbarNav" aria-controls="mainnavbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="iconsax" data-icon="text-align-justify"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="mainnavbarNav">
-                <div class="menu-panel">
-                    <button data-bs-toggle="collapse" data-bs-target="#mainnavbarNav" class="mainnav-close d-block d-md-none">
-                        <i class="iconsax" data-icon="close-circle"></i>
-                    </button>
-                    <a href="" class="logo-icon d-none d-md-flex">
-                        <img src="https://themes.pixelstrap.net/mega_bot/assets/svg/logo-icon.svg" class="img-fluid">
-                    </a>
-                    <ul class="nav nav-tabs menu-wrapper" id="myTab" role="tablist">
-                        <li><button class="nav-link active"><i class="iconsax" data-icon="messages-2"></i><span>Chat</span></button></li>
-                        <li><button class="nav-link"><i class="iconsax" data-icon="refresh-circle"></i><span>History</span></button></li>
-                        <li><button class="nav-link"><i class="iconsax" data-icon="crown-2"></i><span>Subscription</span></button></li>
-                        <li><button class="nav-link"><i class="iconsax" data-icon="question-message"></i><span>Help</span></button></li>
-                        <li><button type="button" class="btn btn-primary nav-link"><i class="iconsax" data-icon="star"></i><span>Rating</span></button></li>
-                        <li><button class="nav-link"><i class="iconsax" data-icon="setting-1"></i><span>Setting</span></button></li>
-                    </ul>
-                </div>
+  <div id="chat-wrapper">
+    <div class="main-wrapper">
+        <div class="chat-header">
+            <div class=" ">
+                <h3 id="targetDiv">Ask anything</h3>
             </div>
-        </nav>
-
-        <!-- Chat Content -->
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat" tabindex="0">
-                <div class="main-wrapper">
-                    <nav class="navbar navbar-expand-lg bg-light p-0">
-                        <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <i class="iconsax" data-icon="text-align-justify"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <div class="inner-menu-panel">
-                                <button data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                                    class="inner-close d-block d-lg-none">Back
-                                </button>
-                                <div class="search-box">
-                                    <i class="iconsax" data-icon="search-normal-2"></i>
-                                    <input type="text" class="form-control" placeholder="Search here..">
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </nav>
-                    
-                    <div class="chat-header">
-                        <div class="d-flex align-items-center gap-2">
-                            <h3 id="targetDiv">Ask anything</h3>
-                        </div>
-                        <div class="header-option">
-                            <a class="del-btn" href="#"><i class="iconsax" data-icon="trash"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="main-chat">
-                        <div class="msger-chat" id="chat-content"></div>
-
-                        <form class="msger-inputarea" id="chat-form">
-                            <input type="text" class="msger-input" placeholder="Ask any question here..." id="prompt" required>
-                            <button type="submit" class="msger-send-btn"><i class="iconsax" data-icon="send-1"></i></button>
-                        </form>
-                    </div>
-                </div>
+            <div class="header-option">
+                <a class="del-btn" href="/home"><i class="fa fa-home" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
 
+        <div class="main-chat">
+            <div class="msger-chat " id="chat-content"></div>
+
+            <form class="msger-inputarea" id="chat-form">
+                <input type="text" class="msger-input" placeholder="Ask any question here..." id="prompt" required>
+                <button type="submit" class="msger-send-btn"><i class="iconsax" data-icon="send-1"></i></button>
+            </form>
+        </div>
+    </div>
+  </div>
       
         <script>
             $(document).ready(function() {
