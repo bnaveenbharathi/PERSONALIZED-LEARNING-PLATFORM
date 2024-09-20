@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Course Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-header {
+      font-weight: bold;
+    }
+    .content-item {
+      margin-bottom: 10px;
+    }
+    iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center">Generated Course Layout</h1>
+    
+    <!-- User input form -->
+    <div class="mb-4">
+      <h5>Select Course Preferences:</h5>
+      <form id="course-form">
+        <div class="mb-3">
+          <label for="category" class="form-label">Category:</label>
+          <input type="text" id="category" name="category" class="form-control" placeholder="e.g. Programming" required>
+        </div>
+        <div class="mb-3">
+          <label for="topic" class="form-label">Topic:</label>
+          <input type="text" id="topic" name="topic" class="form-control" placeholder="e.g. Java" required>
+        </div>
+        <div class="mb-3">
+          <label for="level" class="form-label">Level:</label>
+          <select id="level" name="level" class="form-select" required>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="duration" class="form-label">Duration:</label>
+          <input type="text" id="duration" name="duration" class="form-control" placeholder="e.g. 1 hour" required>
+        </div>
+        <div class="mb-3">
+          <label for="no_of_chapters" class="form-label">Number of Chapters:</label>
+          <input type="number" id="no_of_chapters" name="no_of_chapters" class="form-control" placeholder="e.g. 2" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Course</button>
+      </form>
+    </div>
+    
+
+    <!-- Course layout will be displayed here -->
+    <div id="course-layout" class="row"></div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+document.getElementById('course-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    fetch('/generate_course', {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Display the generated course layout
+        const courseLayout = document.getElementById('course-layout');
+        courseLayout.innerHTML = '';  // Clear any existing content
+
+        data.chapters.forEach((chapter, index) => {
+            const chapterHtml = `
+                <div class="col-md-6 mb-4">
+                  <div class="card">
+                    <div class="card-header" id="chapter${index + 1}-header">
+                      ${chapter.title}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Duration: ${chapter.duration}</h5>
+                      <p class="card-text">${chapter.description}</p>
+                      <hr>
+                      <h6>Contents:</h6>
+                      <div class="content-item">
+                        <strong>Video:</strong> ${chapter.video_title} (${chapter.video_duration})
+                        <!-- Embed YouTube Video -->
+                        <iframe src="${chapter.video_url}" allowfullscreen></iframe>
+                      </div>
+                      <div class="content-item">
+                        <strong>Code Example:</strong> ${chapter.code_example}
+                      </div>
+                      <div class="content-item">
+                        <strong>Quiz:</strong> ${chapter.quiz}
+                      </div>
+                      <div class="content-item">
+                        <strong>Text:</strong> ${chapter.text_content}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            `;
+            courseLayout.insertAdjacentHTML('beforeend', chapterHtml);
+        });
+    })
+    .catch(error => console.error('Error fetching course data:', error));
+});
+
+  </script>
+</body>
+</html>

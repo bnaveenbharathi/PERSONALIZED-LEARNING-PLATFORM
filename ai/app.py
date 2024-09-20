@@ -1,62 +1,11 @@
-from flask import Flask,render_template as render,redirect,request,session,url_for,jsonify
-from components.connection import connection
-from components.auth import auth_routes
-from components.bot import bot_routes
-from components.info import info_routes
-from components.dashboard import dashboard_routes
-import os
+from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 import requests
 
-app=Flask(__name__)
-app.config["SECRET_KEY"]='123890'
+# Initialize Flask app
+app = Flask(__name__)
 
-title="LearnSphere"
-
-
-# authentication
-app.register_blueprint(auth_routes,url_prefix="/auth")
-app.register_blueprint(bot_routes,url_prefix="/bot")
-app.register_blueprint(info_routes,url_prefix="/info")
-app.register_blueprint(dashboard_routes,url_prefix="/dashboard")
-
-#routes
-@app.route("/")
-def authentication():
-    if 'logged_in' in session and session['logged_in']:
-        return redirect(url_for('home'))
-    return render("user.html",title=title)
-
-@app.route("/home")
-def home():
-    if 'logged_in' in session and session['logged_in']:
-        return render('index.html',title=title)
-    else:
-        return redirect(url_for("authentication"))
-
-@app.route("/student-dashboard")
-def studentdashboard():
-    if 'logged_in' in session and session['logged_in']:
-        return render('student-dashboard.html',title=title)
-    else:
-        return redirect(url_for("authentication"))
-    
-
-@app.route("/learningbot")
-def bot():
-    if 'logged_in' in session and session['logged_in']:
-        return render("bot.html",title=title)
-    else:
-        return redirect(url_for('authentication'))
-
-@app.route("/personalinfo")
-def info():
-    if 'logged_in' in session and session['logged_in']:
-        return render("personalinfo.html",title=title)
-    else:
-        return redirect(url_for('authentication'))
-    
-
+# Configure Google Generative AI
 api_key = "AIzaSyBJ5ibIkwm1koegM1kCFvq3XtyO-gKFbUI"
 youtube_api_key = "AIzaSyCjDu8-dniNWptu3nIamxakgs3ySDfrBPA"
 genai.configure(api_key=api_key)
@@ -74,6 +23,7 @@ model = genai.GenerativeModel(
     generation_config=generation_config,
 )
 
+# Function to fetch YouTube video URL based on titlehttps://www.googleapis.com/youtube/v3/search
 def fetch_youtube_video(title):
     search_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={title}&key={youtube_api_key}"
     response = requests.get(search_url)
@@ -94,10 +44,13 @@ def fetch_youtube_video(title):
     
     return None, None, None
 
-@app.route('/courses')
-def course():
-    return render('courserecommendation.html')
 
+# Route for homepage
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Route for generating course
 @app.route('/generate_course', methods=['POST'])
 def generate_course():
     category = request.form['category']
@@ -138,6 +91,6 @@ def generate_course():
     return jsonify({"chapters": chapters})
 
 
-# port run
-if __name__ == "__main__":
-    app.run(host="0.0.0.0",port="8000",debug=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)

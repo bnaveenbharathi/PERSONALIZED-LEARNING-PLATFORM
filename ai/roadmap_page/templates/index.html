@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+        .roadmap {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #ffffff;
+        }
+        .milestone {
+            margin-bottom: 15px;
+        }
+        .milestone h3 {
+            color: #28a745;
+        }
+        .milestone ul {
+            margin-left: 20px;
+        }
+        .milestone li {
+            margin-bottom: 5px;
+        }
+        .resources {
+            margin-top: 10px;
+            padding-left: 20px;
+            border-left: 2px solid #007bff;
+        }
+        .resources h4 {
+            margin-top: 0;
+            color: #6c757d;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Roadmap Generator</h1>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="interest_area">Enter Your Interest Area:</label>
+                <input type="text" id="interest_area" name="interest_area" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Roadmap</button>
+        </form>
+        {% if roadmap %}
+        <h2 class="mt-5">Generated Roadmap:</h2>
+        <div class="roadmap">
+            <pre>{{ roadmap }}</pre>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
