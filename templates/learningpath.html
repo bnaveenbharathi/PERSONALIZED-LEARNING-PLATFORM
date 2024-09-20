@@ -5,8 +5,7 @@
 
 <main>
 	
-<!-- =======================
-Page Banner START -->
+
 <section class="pt-0">
 	<div class="container-fluid px-0">
 		<div class="card bg-blue h-100px h-md-200px rounded-0" style="background:url(assets/images/pattern/04.png) no-repeat center center; background-size:cover;">
@@ -17,14 +16,12 @@ Page Banner START -->
 			<div class="col-12">
 				<div class="card bg-transparent card-body pb-0 ps-0 mt-2 mt-sm-0">
 					<div class="row d-sm-flex justify-sm-content-between mt-2 mt-md-0">
-						<!-- Avatar -->
 						<div class="col-auto">
 							<div class="avatar avatar-xxl position-relative mt-n3">
 								<img class="avatar-img rounded-circle border border-white border-3 shadow" src="" alt="" id="userprofile3">
 								<span class="badge bg-success text-white rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
 							</div>
 						</div>
-						<!-- Profile info -->
 						<div class="col d-sm-flex justify-content-between align-items-center">
 							<div>
 								<h1 class="my-1 fs-4" id="name1"></h1>
@@ -52,7 +49,7 @@ Page Banner START -->
 				</div>
 
 
-				<!-- Divider -->
+			
 				<hr class="d-xl-none">
 				<div class="col-12 col-xl-3 d-flex justify-content-between align-items-center">
 					<a class="h6 mb-0 fw-bold d-xl-none" href="#">Menu</a>
@@ -65,33 +62,24 @@ Page Banner START -->
 		</div>
 	</div>
 </section>
-<!-- =======================
-Page Banner END -->
 
-<!-- =======================
-Page content START -->
 <section class="pt-0">
 	<div class="container">
 		<div class="row">
 
-			<!-- Right sidebar START -->
 			<div class="col-xl-3">
-				<!-- Responsive offcanvas body START -->
 				<nav class="navbar navbar-light navbar-expand-xl mx-0">
 					<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-						<!-- Offcanvas header -->
 						<div class="offcanvas-header bg-light">
 							<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
 							<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 						</div>
-						<!-- Offcanvas body -->
 						<div class="offcanvas-body p-3 p-xl-0">
 							<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
-								<!-- Dashboard menu -->
 								<div class="list-group list-group-dark list-group-borderless">
-									<a class="list-group-item active" href="/student-dashboard"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+									<a class="list-group-item " href="/student-dashboard"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
 									<a class="list-group-item" href=""><i class="bi bi-card-checklist fa-fw me-2"></i>Progress Report</a>
-									<a class="list-group-item" href=""><i class="bi bi-card-checklist fa-fw me-2"></i>Learning path</a>
+									<a class="list-group-item active" href=""><i class="bi bi-card-checklist fa-fw me-2"></i>Learning Path</a>
 									<a class="list-group-item" href=""><i class="bi bi-basket fa-fw me-2"></i>Courses</a>
 											<form action="{{ url_for('auth.logout') }}" method="post">
 										<li><a class="list-group-item text-danger bg-danger-soft-hover" href=""><i class="fas fa-sign-out-alt fa-fw me-2"></i><button type="submit" style="background: none;border: none; color: white;">Sign Out</button></a></li>
@@ -101,16 +89,11 @@ Page content START -->
 						</div>
 					</div>
 				</nav>
-				<!-- Responsive offcanvas body END -->
 			</div>
-			<!-- Right sidebar END -->
 
-			<!-- Main content START -->
 			<div class="col-xl-9">
 
-				<!-- Counter boxes START -->
 				<div class="row mb-4">
-					<!-- Counter item -->
 					<div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
 						<div class="d-flex justify-content-center align-items-center p-4 bg-orange bg-opacity-15 rounded-3">
 							<span class="display-6 lh-1 text-orange mb-0"><i class="fas fa-tv fa-fw"></i></span>
@@ -122,7 +105,6 @@ Page content START -->
 							</div>
 						</div>
 					</div>
-					<!-- Counter item -->
 					<div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
 						<div class="d-flex justify-content-center align-items-center p-4 bg-purple bg-opacity-15 rounded-3">
 							<span class="display-6 lh-1 text-purple mb-0"><i class="fas fa-clipboard-check fa-fw"></i></span>
@@ -134,7 +116,6 @@ Page content START -->
 							</div>
 						</div>
 					</div>
-					<!-- Counter item -->
 					<div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
 						<div class="d-flex justify-content-center align-items-center p-4 bg-success bg-opacity-10 rounded-3">
 							<span class="display-6 lh-1 text-success mb-0"><i class="fas fa-medal fa-fw"></i></span>
@@ -147,16 +128,12 @@ Page content START -->
 						</div>
 					</div>
 				</div>
-				<!-- Counter boxes END -->
 
 				<div class="card border rounded-3">
-					<!-- Card header START -->
 					<div class="card-header border-bottom">
 						<h3 class="mb-0">My Courses List</h3>
 					</div>
-					<!-- Card header END -->
-
-					<!-- Card body START -->
+				
 					<div class="card-body">
 
 						<!-- Search and select START -->
@@ -183,12 +160,9 @@ Page content START -->
 								</form>
 							</div>
 						</div>
-						<!-- Search and select END -->
-
-						<!-- Course list table START -->
+					
 						<div class="table-responsive border-0">
 							<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-								<!-- Table head -->
 								<thead>
 									<tr>
 										<th scope="col" class="border-0 rounded-start">Course Title</th>
@@ -200,9 +174,9 @@ Page content START -->
 
 								<!-- Table body START -->
 								<tbody>
-									<!-- Table item -->
+									
 									<tr>
-										<!-- Table data -->
+										
 										<td>
 											<div class="d-flex align-items-center">
 												<!-- Image -->
@@ -210,9 +184,7 @@ Page content START -->
 													<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
 												</div>
 												<div class="mb-0 ms-2">
-													<!-- Title -->
 													<h6><a href="#">Building Scalable APIs with GraphQL</a></h6>
-													<!-- Info -->
 													<div class="overflow-hidden">
 														<h6 class="mb-0 text-end">85%</h6>
 														<div class="progress progress-sm bg-primary bg-opacity-10">
@@ -224,21 +196,17 @@ Page content START -->
 											</div>
 										</td>
 
-										<!-- Table data -->
 										<td>56</td>
 
-										<!-- Table data -->
 										<td>40</td>
 
-										<!-- Table data -->
 										<td>
 											<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
 										</td>
 									</tr>
 
-									<!-- Table item -->
 									<tr>
-										<!-- Table data -->
+										
 										<td>
 											<div class="d-flex align-items-center">
 												<!-- Image -->
@@ -260,22 +228,22 @@ Page content START -->
 											</div>
 										</td>
 
-										<!-- Table data -->
+										
 										<td>42</td>
 
-										<!-- Table data -->
+										
 										<td>42</td>
 
-										<!-- Table data -->
+										
 										<td>
 											<button class="btn btn-sm btn-success me-1 mb-1 mb-x;-0 disabled"><i class="bi bi-check me-1"></i>Complete</button>
 											<a href="#" class="btn btn-sm btn-light me-1"><i class="bi bi-arrow-repeat me-1"></i>Restart</a>
 										</td>
 									</tr>
 
-									<!-- Table item -->
+									
 									<tr>
-										<!-- Table data -->
+										
 										<td>
 											<div class="d-flex align-items-center">
 												<!-- Image -->
@@ -297,31 +265,23 @@ Page content START -->
 											</div>
 										</td>
 
-										<!-- Table data -->
 										<td>28</td>
 
-										<!-- Table data -->
 										<td>12</td>
 
-										<!-- Table data -->
 										<td>
 											<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
 										</td>
 									</tr>
 
-									<!-- Table item -->
 									<tr>
-										<!-- Table data -->
 										<td>
 											<div class="d-flex align-items-center">
-												<!-- Image -->
 												<div class="w-100px">
 													<img src="assets/images/courses/4by3/01.jpg" class="rounded" alt="">
 												</div>
 												<div class="mb-0 ms-2">
-													<!-- Title -->
 													<h6><a href="#">Digital Marketing Masterclass</a></h6>
-													<!-- Info -->
 													<div class="overflow-hidden">
 														<h6 class="mb-0 text-end">40%</h6>
 														<div class="progress progress-sm bg-primary bg-opacity-10">
@@ -332,31 +292,23 @@ Page content START -->
 												</div>
 											</div>
 										</td>
-										<!-- Table data -->
 										<td>32</td>
 
-										<!-- Table data -->
 										<td>18</td>
 
-										<!-- Table data -->
 										<td>
 											<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
 										</td>
 									</tr>
 
-									<!-- Table item -->
 									<tr>
-										<!-- Table data -->
 										<td>
 											<div class="d-flex align-items-center">
-												<!-- Image -->
 												<div class="w-100px">
 													<img src="assets/images/courses/4by3/02.jpg" class="rounded" alt="">
 												</div>
 												<div class="mb-0 ms-2">
-													<!-- Title -->
 													<h6><a href="#">Graphic Design Masterclass</a></h6>
-													<!-- Info -->
 													<div class="overflow-hidden">
 														<h6 class="mb-0 text-end">90%</h6>
 														<div class="progress progress-sm bg-primary bg-opacity-10">
@@ -367,28 +319,20 @@ Page content START -->
 												</div>
 											</div>
 										</td>
-										<!-- Table data -->
 										<td>16</td>
 
-										<!-- Table data -->
 										<td>14</td>
 										
-										<!-- Table data -->
 										<td>
 											<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
 										</td>
 									</tr>
 								</tbody>
-								<!-- Table body END -->
 							</table>
 						</div>
-						<!-- Course list table END -->
 
-						<!-- Pagination START -->
 						<div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
-							<!-- Content -->
 							<p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-							<!-- Pagination -->
 							<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
 								<ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0">
 									<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
@@ -399,17 +343,13 @@ Page content START -->
 								</ul>
 							</nav>
 						</div>
-						<!-- Pagination END -->
 					</div>
-					<!-- Card body START -->
 				</div>
-			<!-- Main content END -->
 			</div><!-- Row END -->
 		</div>
 	</div>	
 </section>
-<!-- =======================
-Page content END -->
+
 
 </main>
 <script>
@@ -447,7 +387,6 @@ function fetchUserProfile() {
     });
 }
 
-// Call the function
 fetchUserProfile();
 
 </script>

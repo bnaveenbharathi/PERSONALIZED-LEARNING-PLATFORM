@@ -15,7 +15,6 @@ app.config["SECRET_KEY"]='123890'
 title="LearnSphere"
 
 
-# authentication
 app.register_blueprint(auth_routes,url_prefix="/auth")
 app.register_blueprint(bot_routes,url_prefix="/bot")
 app.register_blueprint(info_routes,url_prefix="/info")
@@ -93,18 +92,15 @@ def fetch_youtube_video(title):
             item = data['items'][0]
             video_id = item['id'].get('videoId', None)
             if video_id:
-                # Get video details including duration
                 video_details_url = f"https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id={video_id}&key={youtube_api_key}"
                 details_response = requests.get(video_details_url)
                 video_details = details_response.json()
                 
                 if 'items' in video_details and len(video_details['items']) > 0:
-                    # Get the video duration in ISO 8601 format and convert to minutes
                     duration_iso = video_details['items'][0]['contentDetails']['duration']
                     duration = isodate.parse_duration(duration_iso)
                     duration_in_minutes = int(duration.total_seconds() // 60)
                     
-                    # Customize the YouTube embed URL to hide controls, branding, etc.
                     video_url = (f"https://www.youtube.com/embed/{video_id}"
                                  f"?controls=0&modestbranding=1&rel=0&showinfo=0&autohide=1")
                     return video_url, item['snippet']['title'], f"{duration_in_minutes} minutes"
@@ -136,7 +132,7 @@ def generate_course():
         }]
     )
     response = chat_session.send_message("Generate the course layout.")
-    course_data = response.text  # Convert the response text to appropriate JSON format (as per the Generative AI output)
+    course_data = response.text  
 
     chapters = []
     for i in range(no_of_chapters):

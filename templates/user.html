@@ -3,7 +3,6 @@
 <head>
 	<title>Log In </title>
 
-	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Webestica.com">
@@ -41,17 +40,13 @@
 	
 		<div class="container-fluid">
 			<div class="row">
-				<!-- left -->
 				<div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
 					<div class="p-1 p-lg-5">
-						<!-- Title -->
 						<div class="text-center">
 							<h2 class="fw-bold"> <span class="mb- fs-1">👋</span>Welcome to {{title}} </h2>
 							<p class="mb-0 h6 fw-light">Let's learn something new today!</p>
 						</div>
-						<!-- SVG Image -->
 						<img src="{{url_for('static',filename='images/element/02.svg')}}" class="mt-5" alt="">
-						<!-- Info -->
 					</div>
 				</div>
 
@@ -60,11 +55,9 @@
 					<div class="row my-5"  >
 						<div class="col-sm-10 col-xl-8 m-auto"  >
 
-							<!-- Form START -->
 							<form class="mt-3" method="post" action="/login" id="signin-form">
 								
 								<h1 class="fs-2 mb-4">Log In </h1>
-								<!-- Email -->
 								<div class="mb-4">
 									<label for="exampleInputEmail1" class="form-label">Email address *</label>
 									<div class="input-group input-group-lg">
@@ -72,7 +65,6 @@
 										<input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="InputEmail1" name="email" required>
 									</div>
 								</div>
-								<!-- Password -->
 								<div class="mb-4">
 									<label for="inputPassword5" class="form-label">Password *</label>
 									<div class="input-group input-group-lg">
@@ -81,16 +73,13 @@
 									</div>
 								
 								</div>
-								<!-- Check box -->
 							
-								<!-- Button -->
 								<div class="align-items-center mt-0">
 									<div class="d-grid">
 										<button class="btn btn-primary mb-0" type="submit">Log In</button>
 									</div>
 								</div>
 								<div class="row">
-									<!-- Divider with text -->
 									<div class="position-relative my-4">
 										<hr>
 										<p class="small position-absolute top-50 start-50 translate-middle bg-body px-5">Or</p>
@@ -102,10 +91,8 @@
 									<span>Don't have an account? </span> <span id="signupbtn">Signup here</span>
 								</div>
 							</form>
-							<!-- signup -->
 							<form class="mt-3" method="post" action="/register" id="signup-form" target="_self">
 								<h1 class="fs-2">Create Account</h1>
-								<!-- Name -->
 								<div class="mb-4">
 									<label for="exampleInputEmail1" class="form-label">Name *</label>
 									<div class="input-group input-group-lg">
@@ -120,7 +107,6 @@
 										<input type="number" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Age" id="nameinput" name="age" required>
 									</div>
 								</div>
-								<!-- Email-->
 								<div class="mb-4">
 									<label for="inputPassword5" class="form-label">Email Address *</label>
 									<div class="input-group input-group-lg">
@@ -129,7 +115,6 @@
 
 									</div>
 								</div>
-								<!-- Password -->
 								<div class="mb-4">
 									<label for="inputPassword6" class="form-label">Confirm Password *</label>
 									<div class="input-group input-group-lg">
@@ -137,11 +122,9 @@
 										<input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword" name="password" required>
 									</div>
 								</div>
-								<!-- Check box -->
 								<div class="mb-4">
 								
 								</div>
-								<!-- Button -->
 								<div class="align-items-center mt-0">
 									<div class="d-grid">
 										<button class="btn btn-primary mb-0" type="submit">Sign Up</button>
@@ -159,11 +142,10 @@
 								</div>
 							</form>
 
-							<!-- Form END -->
 						</div>
-					</div> <!-- Row END -->
+					</div> 
 				</div>
-			</div> <!-- Row END -->
+			</div> 
 		</div>
 	</section>
 </main>
@@ -172,7 +154,6 @@
 
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
-<!-- Bootstrap JS -->
 <script src="{{url_for('static',filename='vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
 
