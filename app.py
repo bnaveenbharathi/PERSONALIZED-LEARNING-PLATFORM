@@ -42,6 +42,13 @@ def studentdashboard():
     else:
         return redirect(url_for("authentication"))
     
+@app.route("/student-progress")
+def studentdashboardprogress():
+    if 'logged_in' in session and session['logged_in']:
+        return render('dashboard-progress.html',title=title)
+    else:
+        return redirect(url_for("authentication"))
+    
 
 @app.route("/learningbot")
 def bot():
