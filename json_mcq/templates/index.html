@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST </title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e2729;
+        }
+
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .question-block p {
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #1f3031;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #22313a;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Ability Test</h1>
+        <form method="POST">
+            {% for mcq in mcqs %}
+            <div class="question-block">
+                <p>{{ loop.index }}. {{ mcq['QUESTION'] }}</p>
+                <label><input type="radio" name="answer-{{ loop.index0 }}" value="A"> {{ mcq['OPTIONS']['A'] }}</label>
+                <label><input type="radio" name="answer-{{ loop.index0 }}" value="B"> {{ mcq['OPTIONS']['B'] }}</label>
+                <label><input type="radio" name="answer-{{ loop.index0 }}" value="C"> {{ mcq['OPTIONS']['C'] }}</label>
+                <label><input type="radio" name="answer-{{ loop.index0 }}" value="D"> {{ mcq['OPTIONS']['D'] }}</label>
+            </div>
+            {% endfor %}
+            <button type="submit">Submit Test</button>
+        </form>
+    </div>
+</body>
+
+</html>
