@@ -23,7 +23,6 @@ model = genai.GenerativeModel(
     generation_config=generation_config,
 )
 
-# Function to fetch YouTube video URL based on titlehttps://www.googleapis.com/youtube/v3/search
 def fetch_youtube_video(title):
     search_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={title}&key={youtube_api_key}"
     response = requests.get(search_url)
@@ -93,4 +92,4 @@ def generate_course():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=2000)

@@ -45,7 +45,6 @@ def student_profile():
         if isinstance(user_id, str):
             user_id = ObjectId(user_id)
 
-        # Fetch user profile data from userinfomain collection
         user_data_cursor = userinfomain.find({"user_id": user_id})
         user_data_list = list(user_data_cursor)
 
@@ -53,11 +52,10 @@ def student_profile():
             logging.debug(f"User profile not found for user ID: {user_id}")
             return jsonify({"error": "User profile not found"}), 404
         
-        # Combine user info with profile data
         user_data = serialize_document(user_data_list[0])
         user_data['user'] = serialize_document(user)
 
-        logging.debug(f"User profile data: {user_data}")
+        # logging.debug(f"User profile data: {user_data}")
 
         return jsonify(user_data), 200
 

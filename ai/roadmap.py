@@ -1,11 +1,10 @@
 
 import google.generativeai as genai
 
-# Configure the API key 
 api_key = "AIzaSyBJ5ibIkwm1koegM1kCFvq3XtyO-gKFbUI"
 genai.configure(api_key=api_key)
 
-# Create the model
+
 generation_config = {
   "temperature": 1,
   "top_p": 0.95,
@@ -17,9 +16,7 @@ generation_config = {
 model = genai.GenerativeModel(
   model_name="gemini-1.5-pro",
   generation_config=generation_config,
-  # safety_settings = Adjust safety settings
-  # See https://ai.google.dev/gemini-api/docs/safety-settings
-)
+ )
 
 chat_session = model.start_chat(
   history=[

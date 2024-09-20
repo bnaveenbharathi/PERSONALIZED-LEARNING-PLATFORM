@@ -38,6 +38,13 @@
         .responses strong{
             font-size: larger;
         }
+        .msger-chat {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            overflow-y: scroll;
+            height: 65vh;
+        }
     </style>
 </head>
 
@@ -66,33 +73,8 @@
   </div>
       
         <script>
-            $(document).ready(function() {
-                $('#chat-form').on('submit', function(event) {
-                    event.preventDefault();
-                    const prompt = $('#prompt').val();
+     
 
-                    if (prompt.trim() === '') {
-                        alert('Please enter a valid question.');
-                        return;
-                    }
-
-                    $('#prompt').val('');  
-                    $('#chat-content').append('<div class="responses"><strong>You:</strong> ' + prompt + '</div>');
-
-                    $.ajax({
-                        url: '/bot/ollama-chat',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({ prompt: prompt }),
-                        success: function(data) {
-                            $('#chat-content').append('<div class="responses"><strong>Bot:</strong> ' + data.response + '</div>');
-                        },
-                        error: function(err) {
-                            $('#chat-content').append('<div><strong>Error:</strong> ' + err.responseJSON.error + '</div>');
-                        }
-                    });
-                });
-            });
         </script>
     </section>
 
@@ -101,5 +83,44 @@
     <!-- Iconsax JS -->
     <script src="{{url_for('static',filename='bot/js/iconsax.js')}}"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const chatForm = document.getElementById('chat-form');
+            const chatContent = document.getElementById('chat-content');
+            const promptInput = document.getElementById('prompt');
+        
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                const userInput = promptInput.value;
+                if (!userInput) return;
+        
+                chatContent.innerHTML += `<div class="msg left-msg"><div class="msg-bubble"><div class="msg-text">${userInput}</div></div></div>`;
+                promptInput.value = '';
+        
+                fetch('/bot/ask-chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: userInput })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        chatContent.innerHTML += `<div class="msg right-msg"><div class="msg-bubble"><div class="msg-text">${data.error}</div></div></div>`;
+                    } else {
+                        chatContent.innerHTML += `<div class="msg right-msg"><div class="msg-bubble"><div class="msg-text">${data.response}</div></div></div>`;
+                    }
+        
+                    chatContent.scrollTop = chatContent.scrollHeight;
+                })
+                .catch(error => {
+                    chatContent.innerHTML += `<div class="msg right-msg"><div class="msg-bubble"><div class="msg-text">An error occurred: ${error.message}</div></div></div>`;
+                });
+            });
+        });
+        </script>
+        
 </body>
 </html>
