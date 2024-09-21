@@ -74,17 +74,13 @@ The **AI-Driven Personalized Learning Platform** is designed to provide learners
    cd personalized-learning-platform
    ```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
 
-3. Run the application:
+2. Run the application:
    ```bash
    python app.py
    ```
 
-4. Access the platform at `http://localhost:5000` in your browser.
+4. Access the platform at `http://localhost:8000` in your browser.
 
 ## This project is not fully completed. If you are interested in further developing this project, feel free to contact me.
  
